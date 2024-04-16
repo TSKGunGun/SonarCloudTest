@@ -14,7 +14,12 @@
     </testsuites>
     <source>
         <include>
-            <directory>app</directory>
+            <directory suffix=".php">app/Models</directory>
+            <directory suffix=".php">app/Http/Controllers</directory>
+            <directory suffix=".php">app/Http/Requests</directory>
+            <directory suffix=".php">app/Notifications</directory>
+            <directory suffix=".php">app/Repositories</directory>
+            <directory suffix=".php">app/Services</directory>
         </include>
     </source>
     <php>
@@ -29,14 +34,5 @@
         <env name="SESSION_DRIVER" value="array"/>
         <env name="TELESCOPE_ENABLED" value="false"/>
     </php>
-    <coverage processUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">/app/Http/Controllers</directory>
-            <directory suffix=".php">/app/Http/Requests</directory>
-            <directory suffix=".php">/app/Models</directory>
-            <directory suffix=".php">/app/Repositories</directory>
-            <directory suffix=".php">/app/Services</directory>
-            <directory suffix=".php">/app/Notifications</directory>
-        </include>
-    </coverage>
+    <coverage includeUncoveredFiles="true"></coverage>
 </phpunit>
