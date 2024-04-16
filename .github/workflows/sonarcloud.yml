@@ -42,10 +42,18 @@ jobs:
         run: |
           sudo systemctl start mysql.service
           mysql -uroot -h127.0.0.1 -proot -e 'SET GLOBAL max_connections = 1000;'
-          mysql -uroot -h127.0.0.1 -proot -e 'CREATE DATABASE IF NOT EXISTS testing_database;'
+          mysql -uroot -h127.0.0.1 -proot -e 'CREATE DATABASE IF NOT EXISTS testing;'
               
       - name: Run tests with phpunit/phpunit
-        run: php artisan test --coverage-clover=coverage.xml
+        env:
+          APP_ENV: testing
+          DB_CONNECTION: mysql
+          DB_HOST: 127.0.0.1
+          DB_PORT: 3306
+          DB_DATABASE: testing
+          DB_USERNAME: root
+          DB_PASSWORD: root
+        run: vendor/bin/phpunit --coverage-clover=coverage.xml
     
       - name: Analyze with SonarCloud
         uses: SonarSource/sonarcloud-github-action@master
