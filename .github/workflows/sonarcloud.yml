@@ -11,12 +11,7 @@ permissions:
   pull-requests: read
 
 jobs:
-  Coverage:
-    runs-on: ubuntu-latest
-
-   
   Analysis:
-    needs: Coverage
     runs-on: ubuntu-latest
 
     steps:
